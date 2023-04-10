@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  
+  const [value, setValue] = useState(0)
+  const [test, setTest] = useState(0)
+
+  useEffect(() => {
+    const button = document.querySelector(".btn")
+    if (value > 1) {
+      button.textContent = `Klik cislo ${value}`
+    } else {
+      button.textContent = `Klikni`
+    }
+    
+  })
+
+  useEffect(() => {
+    document.title = `Novy titulok ${test}`
+  },[test])
+
+  return <div>
+    <h1>test</h1>
+    <p>{value}</p>
+    {console.log("ja som return")}
+    <button className="btn" onClick={() => setValue(value + 1)}>Klikni</button>
+    <button className="btn-test" onClick={ () => setTest(test + 1)}>Titulok</button>
+  </div>
 }
 
-export default App;
+export default App
